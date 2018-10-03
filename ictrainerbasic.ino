@@ -1,21 +1,20 @@
-int opin;
-int ipin1;
-int ipin2;
-int icchoice;
-void ictrainer()
+int opin=11;
+int ipin1=12;
+int ipin2=13;
+int icchoice=1;
+void itester()
 {
   Serial.println("Select IC: \n");
-  //choices
-}
+  Serial.read(icchoice);
 switch(icchoice)
 {
-  case 1: ;
+  case 1: ic7408();
           break;
-  case 2: ;
+  case 2: ic7432();
           break;
-  case 3: ;
+  case 3: ic7400();
           break;
-  case 4: ;
+  case 4: ic7402();
           break;
   case 5: ;
           break;
@@ -32,16 +31,59 @@ switch(icchoice)
 
   default: ;
 };
-void generalic()
+}
+void ic7408()
 {
-   //comment statements based on required input;
+   //QUAD TWO INPUT AND GATES;
    digitalWrite(ipin1,HIGH);
    digitalWrite(ipin2,HIGH);
+   // digitalWrite(ipin1,LOW);
+   // digitalWrite(ipin2,LOW);
+   if( digitalRead(opin)==HIGH)
+   Serial.println("IC is working :D");
+   else
+   Serial.println("IC is not working :(");
+
+}
+void ic7432()
+{
+   //QUAD 2 INPUT OR GATES
+   digitalWrite(ipin1,HIGH);
+   //digitalWrite(ipin2,HIGH);
+   //digitalWrite(ipin1,LOW);
+   digitalWrite(ipin2,LOW);
+   if( digitalRead(opin)==HIGH)
+   Serial.println("IC is working :D");
+   else
+   Serial.println("IC is not working :(");
+
+}
+void ic7400()
+{
+   //QUAD 2 INPUT NAND GATES
+   digitalWrite(ipin1,HIGH);
+   digitalWrite(ipin2,HIGH);
+   // digitalWrite(ipin1,LOW);
+   // digitalWrite(ipin2,LOW);
+   if( digitalRead(opin)==LOW)
+   Serial.println("IC is working :D");
+   else
+   Serial.println("IC is not working :(");
+
+}
+void ic7402()
+{
+   //QUAD 2 INPUT NOR GATES
+   ipin1=12;
+   ipin2=11;
+   opin=13;
+   // digitalWrite(ipin1,HIGH);
+   // digitalWrite(ipin2,HIGH);
    digitalWrite(ipin1,LOW);
    digitalWrite(ipin2,LOW);
    if( digitalRead(opin)==HIGH)
    Serial.println("IC is working :D");
    else
-   Serial.println("IC is not working :(")
+   Serial.println("IC is not working :(");
 
 }
