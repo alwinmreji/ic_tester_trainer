@@ -88,8 +88,8 @@ void ic_747266()
 
 void ictester()
 {
-  Serial.print("\n\tChoose the IC \n1. 7486\n2. 747266\nEnter your choice:\t")
-  ch = Serial.read()
+  Serial.print("\n\tChoose the IC \n1. 7486\n2. 747266\nEnter your choice:\t");
+  ch = Serial.read();
   switch (ch)
   {
     case '1':ic_7486();
@@ -108,7 +108,7 @@ void ictrainer()
 void loop()
 {
   Serial.print("\n\t\tWelcome \n1-IC Trainer \n2-IC Tester \n\t Enter your choice: \t");
-  ch = Searial.read();
+  ch = Serial.read();
   switch(ch)
   {
     case '1': ictrainer();
