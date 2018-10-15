@@ -71,83 +71,105 @@ switch(icchoice)
 
 void ic7408()
 {
-   //QUAD TWO INPUT AND GATES;
-   /*"replacing this by DDRD and DDRB"
-   {pinMode(4,INPUT);
-   pinMode(7,INPUT);
-   pinMode(11,INPUT);
-   pinMode(8,INPUT);
-   unsigned char hpins[8] = {13, 12, 10, 9, 5, 6, 2, 3};
-   inputhighpins(hpins, 8);}*/
+  //AND GATES
+   bool g1f,g1s;
+   bool g2f,g2s;
+   bool g3f,g3s;
+   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01101100;
    PORTB = B110110;
-   if(digitalRead(13))
+   g1f=digitalRead(11);
+   g1f=digitalRead(8);
+   g1f=digitalRead(4);
+   g1f=digitalRead(7);
+   PORTD = B01001000;
+   PORTB = B100100;
+   g1s=digitalRead(11);
+   g2s=digitalRead(8);
+   g3s=digitalRead(4);
+   g4s=digitalRead(7);
+   if(g1f&& !g1s)
    Serial.println("Gate 1 is working");
    else Serial.println("Gate 1 is not working");
-   if(digitalRead(10))
+   if(g2f&& !g2s)
    Serial.println("Gate 2 is working");
    else Serial.println("Gate 2 is not working");
-   if(digitalRead(5))
+   if(g3f&& !g3s)
    Serial.println("Gate 3 is working");
    else Serial.println("Gate 3 is not working");
-   if(digitalRead(2))
+   if(g4f&& !g4s)
+   Serial.println("Gate 4 is working");
+   else Serial.println("Gate 4 is not working");
+}
+
+void ic7400()
+{
+  //NAND GATES
+   bool g1f,g1s;
+   bool g2f,g2s;
+   bool g3f,g3s;
+   bool g4f,g4s;
+   DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
+   DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
+   PORTD = B01101100;
+   PORTB = B110110;
+   g1f=digitalRead(11);
+   g1f=digitalRead(8);
+   g1f=digitalRead(4);
+   g1f=digitalRead(7);
+   PORTD = B01001000;
+   PORTB = B100100;
+   g1s=digitalRead(11);
+   g2s=digitalRead(8);
+   g3s=digitalRead(4);
+   g4s=digitalRead(7);
+   if(!g1f&&g1s)
+   Serial.println("Gate 1 is working");
+   else Serial.println("Gate 1 is not working");
+   if(!g2f&&g2s)
+   Serial.println("Gate 2 is working");
+   else Serial.println("Gate 2 is not working");
+   if(!g3f&&g3s)
+   Serial.println("Gate 3 is working");
+   else Serial.println("Gate 3 is not working");
+   if(!g4f&&g4s)
    Serial.println("Gate 4 is working");
    else Serial.println("Gate 4 is not working");
 }
 void ic7432()
 {
-   //QUAD 2 INPUT OR GATES
-   // pinMode(4,INPUT);
-   // pinMode(7,INPUT);
-   // pinMode(11,INPUT);
-   // pinMode(8,INPUT);
-   // unsigned char hpins[4] = {13, 10, 5, 2};
-   // unsigned char lpins[4] = {12, 9, 6, 3};
-   // inputhighpins(hpins,4);
-   // inputlowpins(lpins,4);
-   DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
-   DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
-   PORTD = B01101100;
-   PORTB = B110110;
-   if(digitalRead(13))
-   Serial.println("Gate 1 is working");
-   else Serial.println("Gate 1 is not working");
-   if(digitalRead(10))
-   Serial.println("Gate 2 is working");
-   else Serial.println("Gate 2 is not working");
-   if(digitalRead(5))
-   Serial.println("Gate 3 is working");
-   else Serial.println("Gate 3 is not working");
-   if(digitalRead(2))
-   Serial.println("Gate 4 is working");
-   else Serial.println("Gate 4 is not working");
-}
-void ic7400()
-{
-   //QUAD 2 INPUT NAND GATES
+   //OR GATES
 
-   // pinMode(4,INPUT);
-   // pinMode(7,INPUT);
-   // pinMode(11,INPUT);
-   // pinMode(8,INPUT);
-   // unsigned char hpins[8] = {13, 12, 10, 9, 5, 6, 2, 3};
-   // inputhighpins(hpins, 8);
+   bool g1f,g1s;
+   bool g2f,g2s;
+   bool g3f,g3s;
+   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
-   PORTD = B01101100;
-   PORTB = B110110;
-   if(digitalRead(13)==0)
+   PORTD = B01001000;
+   PORTB = B100100;
+   g1f=digitalRead(11);
+   g1f=digitalRead(8);
+   g1f=digitalRead(4);
+   g1f=digitalRead(7);
+   PORTD = B00000000;
+   PORTB = B000000;
+   g1s=digitalRead(11);
+   g2s=digitalRead(8);
+   g3s=digitalRead(4);
+   g4s=digitalRead(7);
+   if(g1f&& !g1s)
    Serial.println("Gate 1 is working");
    else Serial.println("Gate 1 is not working");
-   if(digitalRead(10)==0)
+   if(g2f&& !g2s)
    Serial.println("Gate 2 is working");
    else Serial.println("Gate 2 is not working");
-   if(digitalRead(5)==0)
+   if(g3f&& !g3s)
    Serial.println("Gate 3 is working");
    else Serial.println("Gate 3 is not working");
-   if(digitalRead(2)==0)
+   if(g4f&& !g4s)
    Serial.println("Gate 4 is working");
    else Serial.println("Gate 4 is not working");
 
@@ -155,26 +177,34 @@ void ic7400()
 void ic7402()
 {
    //QUAD 2 INPUT NOR GATES
-   // pinMode(13,INPUT);
-   // pinMode(10,INPUT);
-   // pinMode(5,INPUT);
-   // pinMode(2,INPUT);
-   // unsigned char lpins[8] = {12, 11, 8, 9, 7, 6, 4, 3};
-   // inputlowpins(lpins, 8);
-   DDRD = B11011000; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
-   DDRB = B011011; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
-   PORTD = B11011000;
-   PORTB = B011011;
-   if(digitalRead(13))
+   bool g1f,g1s;
+   bool g2f,g2s;
+   bool g3f,g3s;
+   bool g4f,g4s;
+   DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
+   DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
+   PORTD = B01001000;
+   PORTB = B100100;
+   g1f=digitalRead(11);
+   g1f=digitalRead(8);
+   g1f=digitalRead(4);
+   g1f=digitalRead(7);
+   PORTD = B00000000;
+   PORTB = B000000;
+   g1s=digitalRead(11);
+   g2s=digitalRead(8);
+   g3s=digitalRead(4);
+   g4s=digitalRead(7);
+   if(!g1f&& g1s)
    Serial.println("Gate 1 is working");
    else Serial.println("Gate 1 is not working");
-   if(digitalRead(10))
+   if(!g2f&& g2s)
    Serial.println("Gate 2 is working");
    else Serial.println("Gate 2 is not working");
-   if(digitalRead(5))
+   if(!g3f&& g3s)
    Serial.println("Gate 3 is working");
    else Serial.println("Gate 3 is not working");
-   if(digitalRead(2))
+   if(!g4f&& g4s)
    Serial.println("Gate 4 is working");
    else Serial.println("Gate 4 is not working");
 
