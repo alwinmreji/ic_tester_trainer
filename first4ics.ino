@@ -7,7 +7,7 @@ void ic7400();
 void ic7402();
 
 bool g1f,g1s, g2f,g2s, g3f,g3s, g4f,g4s;
-
+int ch;
 /*void inputhighpins(unsigned char pins[], unsigned char n)
 {
  unsigned char i;
@@ -34,24 +34,32 @@ void setup()
 
 void loop()
 {
- Serial.println("1-IC Trainer \n Enter choice: \n");//\n 2-IC Tester
- int choice= Serial.read();
- switch(choice)
- {
-   case 1: ictester();
-         break;
-  // case 2: ictrainer();
-          // break;
-  default: Serial.print("INVALID!!");//ictrainer();
+  Serial.println("\n\t\t\tWelcome to IC Tester\n")
+ /* Serial.println("1-IC Trainer \n Enter choice: \n");//\n 2-IC Tester
+ // int choice= Serial.read();
+ // switch(choice)
+ // {
+   case 1:*/ ictester();
+ //         break;
+ //  // case 2: ictrainer();
+ //          // break;
+ //  default: Serial.print("INVALID!!");//ictrainer();
  }
 }
 
+void choice()
+{
+ ch = Serial.read();
+  if (ch>0 && ch<9)
+  return;
+  choice();
+}
 
 void ictester()
 {
   Serial.println("\n\tSelect IC: \n1. 7408\n2.7432\n3.7400\n4.7402\n5.7486\n6.747266\n7.7404\nEnter Your Choice:\t");
-  int icchoice=Serial.read();
-switch(icchoice)
+  choice();
+switch(ch)
 {
   case 1: ic7408();
           break;
@@ -67,8 +75,8 @@ switch(icchoice)
           break;
   case 7: ic_7404();
           break;
-  default: ;
-};
+  default:Serial.println("\n\t!!INVALID!!");
+}
 }
 
 void ic7408()
