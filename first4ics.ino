@@ -6,6 +6,8 @@ void ic7432();
 void ic7400();
 void ic7402();
 
+bool g1f,g1s, g2f,g2s, g3f,g3s, g4f,g4s;
+
 /*void inputhighpins(unsigned char pins[], unsigned char n)
 {
  unsigned char i;
@@ -72,10 +74,6 @@ switch(icchoice)
 void ic7408()
 {
   //AND GATES
-   bool g1f,g1s;
-   bool g2f,g2s;
-   bool g3f,g3s;
-   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01101100;
@@ -107,10 +105,6 @@ void ic7408()
 void ic7400()
 {
   //NAND GATES
-   bool g1f,g1s;
-   bool g2f,g2s;
-   bool g3f,g3s;
-   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01101100;
@@ -141,11 +135,6 @@ void ic7400()
 void ic7432()
 {
    //OR GATES
-
-   bool g1f,g1s;
-   bool g2f,g2s;
-   bool g3f,g3s;
-   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01001000;
@@ -177,10 +166,6 @@ void ic7432()
 void ic7402()
 {
    //QUAD 2 INPUT NOR GATES
-   bool g1f,g1s;
-   bool g2f,g2s;
-   bool g3f,g3s;
-   bool g4f,g4s;
    DDRD = B01101100; //B 7 6 5 4 3 2 1 0 -> 1=OUTPUT, 0 = INPUT
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01001000;
@@ -216,16 +201,26 @@ void ic7400()
    DDRB = B110110; //B 13 12 11 10 9 8 -> 1=OUTPUT, 0 = INPUT
    PORTD = B01101100;
    PORTB = B110110;
-   if(digitalRead(13)==0)
+   g1f=digitalRead(13);
+   g2f=digitalRead(10);
+   g3f=digitalRead(5);
+   g4f=digitalRead(2);
+   PORTD = B00000000;
+   PORTB = B000000;
+   g1s=digitalRead(13);
+   g2s=digitalRead(10);
+   g3s=digitalRead(5);
+   g4s=digitalRead(2);
+   if(!g1f&&g1s)
    Serial.println("Gate 1 is working");
    else Serial.println("Gate 1 is not working");
-   if(digitalRead(10)==0)
+   if(!g2f&&g2s)
    Serial.println("Gate 2 is working");
    else Serial.println("Gate 2 is not working");
-   if(digitalRead(5)==0)
+   if(!g3f&&g3s)
    Serial.println("Gate 3 is working");
    else Serial.println("Gate 3 is not working");
-   if(digitalRead(2)==0)
+   if(!g4f&&g4s)
    Serial.println("Gate 4 is working");
    else Serial.println("Gate 4 is not working");
 }
